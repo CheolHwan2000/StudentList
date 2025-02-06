@@ -20,7 +20,6 @@ class MainViewModel @Inject constructor(
     val students: LiveData<List<Student>> get() = _students
 
     suspend fun insertStudent(student: Student){
-
         insertUseCase.invoke(student)
     }
 

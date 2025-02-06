@@ -31,6 +31,10 @@
         android:layout_height="wrap_content"
         android:text="학생 조회" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvaa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>
