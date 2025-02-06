@@ -1,5 +1,7 @@
 package com.example.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.domain.model.Student
 import com.example.domain.usecase.GetAllUseCase
@@ -14,6 +16,9 @@ class MainViewModel @Inject constructor(
     private val insertUseCase: InsertUseCase,
     private val searchUseCase: SearchUseCase) :ViewModel(){
 
+    private val _students = MutableLiveData<List<Student>>()
+    val students: LiveData<List<Student>> get() = _students
+
     suspend fun insertStudent(student: Student){
 
         insertUseCase.invoke(student)
@@ -23,7 +28,7 @@ class MainViewModel @Inject constructor(
         searchUseCase.invoke(student)
     }
 
-    suspend fun getAllUStudent(){
+    fun getAllUStudent(){
         getAllUserCase.invoke()
     }
 

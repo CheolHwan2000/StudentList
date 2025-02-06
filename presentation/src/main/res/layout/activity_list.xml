@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".ListActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/studentRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <EditText
-        android:id="@+id/editStudentId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="학생 ID 입력"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/editStudentName"
+        />
+    <Button
+        android:id="@+id/searchStudent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="학생 이름 입력"
-        android:inputType="text" />
+        android:text="검색" />
 
     <Button
-        android:id="@+id/addStudent"
+        android:id="@+id/deleteStudent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="학생 추가" />
-
-    <Button
-        android:id="@+id/listStudent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="학생 조회" />
-
+        android:text="삭제" />
 
 
 </LinearLayout>
