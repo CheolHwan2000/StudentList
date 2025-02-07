@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Student
+import com.example.domain.usecase.DeleteUseCase
 import com.example.domain.usecase.GetAllUseCase
 import com.example.domain.usecase.InsertUseCase
 import com.example.domain.usecase.SearchUseCase
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getAllUseCase: GetAllUseCase,
     private val insertUseCase: InsertUseCase,
+    private val deleteUseCase: DeleteUseCase,
     private val searchUseCase: SearchUseCase) :ViewModel(){
 
     private val _students = MutableLiveData<List<Student>>()
@@ -24,10 +26,15 @@ class MainViewModel @Inject constructor(
     suspend fun insertStudent(student: Student){
         insertUseCase.invoke(student)
     }
+    fun deleteStudent(student: String){
+//        deleteUseCase.invoke(student)
+        viewModelScope.launch {
+            deleteUseCase.invoke(student)
+        }
+
+    }
 
     fun searchStudent(student: String){
-        _students.value = emptyList()
-//        searchUseCase.invoke(student)
         viewModelScope.launch {
             searchUseCase(student).observeForever { studentList ->
                 _students.postValue(studentList ?: emptyList()) // 🔹 null 방지
@@ -42,14 +49,5 @@ class MainViewModel @Inject constructor(
         }
     }
 
-//    fun loadStudents() {
-//        viewModelScope.launch {
-//            _students.value = getAllUseCase().value
-//        }
-//    }
-
-//    fun getAllUStudent(){
-//        getAllUserCase.invoke()
-//    }
 
 }

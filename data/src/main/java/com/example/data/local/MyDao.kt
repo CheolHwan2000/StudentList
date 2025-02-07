@@ -18,6 +18,8 @@ interface MyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStudentList(student: Student)
 
+    @Query("DELETE FROM student_table WHERE name = :student")
+    suspend fun deleteStudentList(student: String)
     @Delete
-    suspend fun deleteStudentList(student: Student)
+    suspend fun deleteAllStudent(student: Student)
 }

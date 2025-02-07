@@ -6,7 +6,6 @@ import com.example.data.local.MyDao
 import com.example.data.local.MyDatabase
 import com.example.data.repository.StudentRepositoryImpl
 import com.example.domain.repository.StudentRepository
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

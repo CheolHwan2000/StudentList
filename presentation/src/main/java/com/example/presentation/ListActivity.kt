@@ -30,13 +30,28 @@ class ListActivity : AppCompatActivity() {
         observe()
         binding.searchStudent.setOnClickListener {
             Log.e("ListActivity","searchButton")
-            val searchStudent = binding.searchStudent.text.toString()
+            val searchStudent = binding.edtSearchStudent.text.toString().trim()
             if(searchStudent.isNotEmpty()){
             viewModel.searchStudent(searchStudent)
+                Log.e("ListActivity", "Success Search Student")
+
             }else{
+                Log.e("ListActivity", "Failed Search Student")
                 viewModel.loadStudents()
             }
-            observe()
+        }
+
+        binding.deleteStudent.setOnClickListener {
+            Log.e("ListActivity","deleteButton")
+            val searchStudent = binding.edtSearchStudent.text.toString().trim()
+            if(searchStudent.isNotEmpty()){
+                viewModel.deleteStudent(searchStudent)
+                Log.e("ListActivity", "Success Delete Student")
+
+            }else{
+                Log.e("ListActivity", "Failed Delete Student")
+                viewModel.loadStudents()
+            }
         }
     }
 
@@ -44,7 +59,7 @@ class ListActivity : AppCompatActivity() {
         viewModel.students.observe(this) { studentList ->
             studentList?.let {
                 adapter.submitList(it)
-            } ?: Log.e("ListActivity", "No students found")
+            } ?: Log.e("ListActivity", "No Students found")
         }
     }
 }

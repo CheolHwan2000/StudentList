@@ -13,9 +13,12 @@ class StudentRepositoryImpl @Inject constructor(private val myDao : MyDao) : Stu
         myDao.insertStudentList(com.example.data.local.Student(student.id,student.name))
     }
 
-    override suspend fun searchStudent(student: String): LiveData<List<Student>> {
-        return myDao.getAllStudentList().map { it.map { Student(it.id, it.name)  } }
+    override suspend fun deleteStudent(student: String) {
+        myDao.deleteStudentList(student)
+    }
 
+    override suspend fun searchStudent(student: String): LiveData<List<Student>> {
+        return myDao.getSearchStudent(student).map { it.map { Student(it.id, it.name)  } }
     }
 
     override fun getAllStudent(): LiveData<List<Student>> {
