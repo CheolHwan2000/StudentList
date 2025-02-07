@@ -12,6 +12,9 @@ interface MyDao {
     @Query("SELECT * FROM student_table")
     fun getAllStudentList() : LiveData<List<Student>>
 
+    @Query("SELECT * FROM student_table WHERE name = :student")
+    fun getSearchStudent(student : String) : LiveData<List<Student>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStudentList(student: Student)
 
